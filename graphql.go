@@ -77,6 +77,7 @@ var QueryGroot = &graphql.Field{
 			return FindAllGroot()
 		}
 
+<<<<<<< HEAD
 		if len(month) == 4 {
 			gs, err := FindAllGroot()
 			if err != nil {
@@ -93,6 +94,8 @@ var QueryGroot = &graphql.Field{
 			return tg, nil
 		}
 
+=======
+>>>>>>> 8cd848bcc2562f6c5fa67dd3cbe4ee53f501b8d7
 		if gs, err := FindSpecifyGroot(month); err != nil {
 			return nil, err
 		} else {
@@ -115,7 +118,11 @@ var AddGroot = &graphql.Field{
 		month, _ := p.Args["month"].(string)
 		bank, _ := p.Args["bank"].(string)
 
+<<<<<<< HEAD
 		var gb []GrootBank
+=======
+		var gb GrootBank
+>>>>>>> 8cd848bcc2562f6c5fa67dd3cbe4ee53f501b8d7
 
 		err := json.Unmarshal([]byte(bank), &gb)
 		if err != nil {
@@ -158,7 +165,11 @@ var UpdateGroot = &graphql.Field{
 
 		g := Groot{
 			Time: month,
+<<<<<<< HEAD
 			Bank: []GrootBank{gb},
+=======
+			Bank: gb,
+>>>>>>> 8cd848bcc2562f6c5fa67dd3cbe4ee53f501b8d7
 		}
 
 		if err = UpdateGrootByMonth(g); err != nil {

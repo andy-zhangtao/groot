@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/andy-zhangtao/gogather/time"
 	"fmt"
+	"github.com/andy-zhangtao/gogather/time"
 )
 
 func addGroot(g Groot) (err error) {

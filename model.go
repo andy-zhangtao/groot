@@ -1,7 +1,7 @@
 package main
 
 type Groot struct {
-	Time string    `json:"time" bson:"time" bw:"time"`
+	Time string      `json:"time" bson:"time" bw:"time"`
 	Bank []GrootBank `json:"bank" bson:"bank"`
 }
 
@@ -10,4 +10,3 @@ type GrootBank struct {
 	Balance float32 `json:"balance" bson:"balancd"`
 	Status  int     `json:"status" bson:"status"`
 }
-

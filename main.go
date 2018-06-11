@@ -21,6 +21,7 @@ var rootDevexQuery = graphql.NewObject(graphql.ObjectConfig{
 	Name: "RootQuery",
 	Fields: graphql.Fields{
 		"queryGroot": QueryGroot,
+		//"currentUser":
 	},
 })
 

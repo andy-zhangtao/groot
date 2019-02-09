@@ -3,11 +3,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:b34110424e50b6be40b77b8b89e776b0e393feb930972c10fff99a29b77b0f6d"
+  digest = "1:56e11af7912a2f74e97bff2ccb4a40eb94ef1a39cec003cb06f960048db39593"
   name = "github.com/andy-zhangtao/bwidow"
   packages = ["."]
   pruneopts = "UT"
-  revision = "dfcd852ecc89e513dc3c3ffb186bc7d9a464087c"
+  revision = "8d0ce0e2c117c9b142e84248f6f554c3c0bc9030"
 
 [[projects]]
   branch = "master"
@@ -71,6 +71,17 @@
   pruneopts = "UT"
   revision = "5c8c8bd35d3832f5d134ae1e1e375b69a4d25242"
   version = "v1.0.1"
+
+[[projects]]
+  digest = "1:8ef506fc2bb9ced9b151dafa592d4046063d744c646c1bbe801982ce87e4bc24"
+  name = "github.com/lib/pq"
+  packages = [
+    ".",
+    "oid",
+  ]
+  pruneopts = "UT"
+  revision = "4ded0e9383f75c197b3a2aaa6d590ac52df6fd79"
+  version = "v1.0.0"
 
 [[projects]]
   digest = "1:95741de3af260a92cc5c7f3f3061e85273f5a81b5db20d4bd68da74bd521675e"

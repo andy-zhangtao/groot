@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/andy-zhangtao/bwidow"
-	"github.com/sirupsen/logrus"
 	"github.com/andy-zhangtao/gogather/zlog"
+	"github.com/sirupsen/logrus"
 )
 
 var bw *bwidow.BW
@@ -14,7 +14,7 @@ const ModuleName = "Groot"
 func init() {
 	z = zlog.GetZlog()
 	bw = bwidow.GetWidow()
-	if err := bw.Driver(bwidow.DRIVER_MONGO).Error(); err != nil {
+	if err := bw.Driver(bwidow.DRIVER_PQ).Error(); err != nil {
 		panic(err)
 	}
 
@@ -26,5 +26,5 @@ func init() {
 		panic(err)
 	}
 
-	logrus.WithFields(z.Fields(logrus.Fields{"BW Init Sucess Version": bw.Version()})).Info(ModuleName)
+	logrus.WithFields(z.Fields(logrus.Fields{"BW Init Success Version": bw.Version()})).Info(ModuleName)
 }

@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/graphql-go/graphql"
 	"encoding/json"
 	"fmt"
+	"github.com/graphql-go/graphql"
 )
 
 var GrootType = graphql.NewObject(graphql.ObjectConfig{
@@ -18,11 +18,83 @@ var GrootType = graphql.NewObject(graphql.ObjectConfig{
 				return nil, nil
 			},
 		},
-		"bank": &graphql.Field{
-			Type: graphql.NewList(GrootBankType),
+		"icbc": &graphql.Field{
+			Type: graphql.Float,
 			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 				if g, ok := p.Source.(Groot); ok {
-					return g.Bank, nil
+					return g.B_icbc, nil
+				}
+				return nil, nil
+			},
+		},
+		"abc": &graphql.Field{
+			Type: graphql.Float,
+			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+				if g, ok := p.Source.(Groot); ok {
+					return g.B_abc, nil
+				}
+				return nil, nil
+			},
+		},
+		"bocom": &graphql.Field{
+			Type: graphql.Float,
+			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+				if g, ok := p.Source.(Groot); ok {
+					return g.B_bocom, nil
+				}
+				return nil, nil
+			},
+		},
+		"cmb": &graphql.Field{
+			Type: graphql.Float,
+			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+				if g, ok := p.Source.(Groot); ok {
+					return g.B_cmb, nil
+				}
+				return nil, nil
+			},
+		},
+		"citic": &graphql.Field{
+			Type: graphql.Float,
+			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+				if g, ok := p.Source.(Groot); ok {
+					return g.B_citic, nil
+				}
+				return nil, nil
+			},
+		},
+		"ccb": &graphql.Field{
+			Type: graphql.Float,
+			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+				if g, ok := p.Source.(Groot); ok {
+					return g.B_ccb, nil
+				}
+				return nil, nil
+			},
+		},
+		"bj": &graphql.Field{
+			Type: graphql.Float,
+			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+				if g, ok := p.Source.(Groot); ok {
+					return g.B_bj, nil
+				}
+				return nil, nil
+			},
+		},
+		"ali": &graphql.Field{
+			Type: graphql.Float,
+			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+				if g, ok := p.Source.(Groot); ok {
+					return g.B_ali, nil
+				}
+				return nil, nil
+			},
+		},
+		"oth": &graphql.Field{
+			Type: graphql.Float,
+			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+				if g, ok := p.Source.(Groot); ok {
+					return g.B_oth, nil
 				}
 				return nil, nil
 			},
@@ -30,38 +102,38 @@ var GrootType = graphql.NewObject(graphql.ObjectConfig{
 	},
 })
 
-var GrootBankType = graphql.NewObject(graphql.ObjectConfig{
-	Name: "Groot_Bank",
-	Fields: graphql.Fields{
-		"kind": &graphql.Field{
-			Type: graphql.Int,
-			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-				if b, ok := p.Source.(GrootBank); ok {
-					return b.Kind, nil
-				}
-				return nil, nil
-			},
-		},
-		"balance": &graphql.Field{
-			Type: graphql.Float,
-			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-				if b, ok := p.Source.(GrootBank); ok {
-					return b.Balance, nil
-				}
-				return nil, nil
-			},
-		},
-		"status": &graphql.Field{
-			Type: graphql.Int,
-			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-				if b, ok := p.Source.(GrootBank); ok {
-					return b.Status, nil
-				}
-				return nil, nil
-			},
-		},
-	},
-})
+//var GrootBankType = graphql.NewObject(graphql.ObjectConfig{
+//	Name: "Groot_Bank",
+//	Fields: graphql.Fields{
+//		"kind": &graphql.Field{
+//			Type: graphql.Int,
+//			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+//				//if b, ok := p.Source.(GrootBank); ok {
+//				//	return b.Kind, nil
+//				//}
+//				return nil, nil
+//			},
+//		},
+//		"balance": &graphql.Field{
+//			Type: graphql.Float,
+//			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+//				//if b, ok := p.Source.(GrootBank); ok {
+//				//	return b.Balance, nil
+//				//}
+//				return nil, nil
+//			},
+//		},
+//		"status": &graphql.Field{
+//			Type: graphql.Int,
+//			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+//				//if b, ok := p.Source.(GrootBank); ok {
+//				//	return b.Status, nil
+//				//}
+//				return nil, nil
+//			},
+//		},
+//	},
+//})
 
 var QueryGroot = &graphql.Field{
 	Type: graphql.NewList(GrootType),
@@ -123,7 +195,29 @@ var AddGroot = &graphql.Field{
 
 		g := Groot{
 			Time: month,
-			Bank: gb,
+		}
+
+		for _, bank := range gb {
+			switch bank.Kind {
+			case BANK_TYPE_ICBC:
+				g.B_icbc = bank.Balance
+			case BANK_TYPE_ABCHINA:
+				g.B_abc = bank.Balance
+			case BANK_TYPE_BOCOM:
+				g.B_bocom = bank.Balance
+			case BANK_TYPE_CMBCHINA:
+				g.B_cmb = bank.Balance
+			case BANK_TYPE_CITIC:
+				g.B_citic = bank.Balance
+			case BANK_TYPE_CCB:
+				g.B_ccb = bank.Balance
+			case BANK_TYPE_BJ:
+				g.B_bj = bank.Balance
+			case BANK_TYPE_ALIPAY:
+				g.B_ali = bank.Balance
+			case BANK_TYPE_OTHER:
+				g.B_oth = bank.Balance
+			}
 		}
 
 		if err = AddNewGroot(g); err != nil {
@@ -157,11 +251,44 @@ var UpdateGroot = &graphql.Field{
 
 		g := Groot{
 			Time: month,
-			Bank: gb,
+		}
+
+		for _, bank := range gb {
+			switch bank.Kind {
+			case BANK_TYPE_ICBC:
+				g.B_icbc = bank.Balance
+			case BANK_TYPE_ABCHINA:
+				g.B_abc = bank.Balance
+			case BANK_TYPE_BOCOM:
+				g.B_bocom = bank.Balance
+			case BANK_TYPE_CMBCHINA:
+				g.B_cmb = bank.Balance
+			case BANK_TYPE_CITIC:
+				g.B_citic = bank.Balance
+			case BANK_TYPE_CCB:
+				g.B_ccb = bank.Balance
+			case BANK_TYPE_BJ:
+				g.B_bj = bank.Balance
+			case BANK_TYPE_ALIPAY:
+				g.B_ali = bank.Balance
+			case BANK_TYPE_OTHER:
+				g.B_oth = bank.Balance
+			}
+		}
+
+		oldGroot, err := FindSpecifyGroot(month)
+		if err != nil {
+			return nil, err
+		}
+
+		if oldGroot.B_icbc == 0 && oldGroot.B_oth == 0 && oldGroot.B_ali == 0 && oldGroot.B_bj == 0 && oldGroot.B_ccb == 0 && oldGroot.B_citic == 0 && oldGroot.B_cmb == 0 && oldGroot.B_bocom == 0 && oldGroot.B_abc == 0 {
+			if err = AddNewGroot(g); err != nil {
+				return nil, z.Error(fmt.Sprintf("Add Groot Error [%s]", err))
+			}
 		}
 
 		if err = UpdateGrootByMonth(g); err != nil {
-			return nil, z.Error(fmt.Sprintf("Add Groot Error [%s]", err))
+			return nil, z.Error(fmt.Sprintf("Update Groot Error [%s]", err))
 		}
 
 		return g, nil
